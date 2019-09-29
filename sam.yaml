@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Change EC2 IP for ShadowSocks Server
+Globals:
+  Function:
+    Runtime: nodejs10.x
+    Timeout: 10
+    MemorySize: 128
+Resources:
+  ChangeIPFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://lzkmylz-sam/3740b031d1fd20cda8fbda435c5c1c50
+      Handler: app.handler
+      Policies: AmazonEC2ContainerServiceFullAccess
+      Events:
+        ChangeIP:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
